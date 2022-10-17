@@ -1,0 +1,40 @@
+Registering an Application in Azure AD:
+Register the application in Azure AD and give below applications permission to the app And Grant 
+admin consent.
+[SecurityEvents.Read.All]
+For further configuration in QRadar, make a note of following settings:
+• The Azure AD Application ID
+• The Azure AD Application Secret
+• The Tenant ID
+Preparation Steps in QRadar: 
+Using the Microsoft Graph Security API DSM to collect alerts from Azure Sentinel requires the 
+following RPMs to be installed on QRadar:
+• Protocol Common RPM
+• Microsoft Graph Security API Protocol RPM
+Download the latest version of RPMs from http://www.ibm.com/support and run the following 
+commands to install the RPMs.
+yum -y install DSM-DSMCommon-7.3-20190708191548.noarch.rpm
+yum -y install PROTOCOL-MicrosoftGraphSecurityAPI-7.3-20200501003005.noarch.rpm
+
+Preparation Steps in QRadar
+Log on to the “QRadar portal“and click on “Admin“tab
+Open the “QRadar Log Source Management” screen and click on the “+New Log Source” button
+Select “Single Log Source”
+Search for "Universal DSM", select it and click on “Step 2: Select Protocol Type”
+Search for "Microsoft Graph Security API", select it and click on "Step 3: Configure Log Source 
+Parameters”
+
+Type a "Name" and a "Description", and configure "other parameters" , and click to "Step 4: 
+Configure Protocol Parameters"
+Add a "Log Source Identifier" and specify the parameters noted above when registering the Azure 
+AD app (Azure AD Client ID, Azure AD Client Secret and Tenant ID).
+
+Click on “Step 5: Test Protocol Parameters” to continue with the wizard.
+If you want to validate the configuration, click ”Start Test”, otherwise finish the configuration by 
+clicking “Skip Test and Finish”.
+
+Once the wizard is closed, the created "Log Source" is shown on the "Log Source Management" 
+screen.
+However, the configuration is not finished yet, it must be deployed in the "QRadar Admin portal". 
+Click on "Deploy Change" to apply the configuration.
+Once the alerts are ingested, you can query Azure Sentinel alerts in QRadar
